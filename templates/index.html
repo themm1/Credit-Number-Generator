@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Credit</title>
+    </head>
+
+    <body>
+        <h1>Credit card generator</h1>
+        <form action="/generate" method="POST">
+
+            <select name="brand">
+                <option>Random</option>
+                {% for brand in brands %}
+                    <option value="{{ brand.name }}">{{ brand.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Generate">
+
+        </form>
+        <div>{{ generated_number }}</div>
+
+        <h1>Credit card validator</h1>
+        <form action="/validate" method="POST">
+
+            <input name="number" type="text" placeholder="Card Number" autofocus>
+            <input type="submit" value="Validate">
+            
+        </form>
+        <div>{{ message }}</div>
+    </body>
+</html>
