@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import random
 from credit import Brand, CreditNumber, generate, validate
 
@@ -24,12 +24,12 @@ def generator():
             break
     else:
         number = generate(random.choice(BRANDS))
-    return render_template("index.html", brands=BRANDS, generated_number=f"Generated Number: {number}")
+    return jsonify({"number": f"Generated Number: {number}"})
 
 @app.route("/validate", methods=["POST"])
 def validator():
     message = validate(request.form.get("number"), BRANDS)
-    return render_template("index.html", brands=BRANDS, message=message)
+    return jsonify({"message": message})
 
 
 if __name__ == "__main__":
