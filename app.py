@@ -17,7 +17,7 @@ def index():
 
 @app.route("/generate", methods=["POST"])
 def generator():
-    picked_brand = request.form.get("brand")
+    picked_brand = request.form["brand"]
     for brand in BRANDS:
         if brand.name == picked_brand:
             number = generate(brand)

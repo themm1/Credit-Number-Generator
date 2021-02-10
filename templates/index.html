@@ -3,14 +3,13 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <title>Credit</title>
-        <script src="../static/js/script.js"></script>
     </head>
 
     <body>
         <h1>Credit card generator</h1>
-        <form action="/generate" method="POST">
+        <form id="generate" action="/generate" method="POST">
 
-            <select name="brand">
+            <select name="brand" id="brand">
                 <option>Random</option>
                 {% for brand in brands %}
                     <option value="{{ brand.name }}">{{ brand.name }}</option>
@@ -30,4 +29,25 @@
         </form>
         <div id="validatedNumber"></div>
     </body>
+    <script>
+        $(document).ready(function() {
+
+            $('#generate').on('submit', function(event) {
+
+                $.ajax({
+                    data : {
+                        brand : $('#brand').val()
+                    },
+                    type : 'POST',
+                    url : '/generate'
+                })
+                .done(function(data) {
+                    $('#generatedNumber').text(data.number);
+                });
+                event.preventDefault();
+
+            });
+
+        });
+    </script>
 </html>
