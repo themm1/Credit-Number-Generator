@@ -3,6 +3,7 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <title>Credit</title>
+        <script src="../static/js/script.js"></script>
     </head>
 
     <body>
@@ -20,34 +21,14 @@
         </form>
         <div id="generatedNumber"></div>
 
-        <h1>Credit card validator</h1>
-        <form action="/validate" method="POST">
 
-            <input name="number" type="text" placeholder="Card Number" autofocus>
+        <h1>Credit card validator</h1>
+        <form id="validate" action="/validate" method="POST">
+
+            <input name="number" id="number" type="text" placeholder="Card Number" autofocus>
             <input type="submit" value="Validate">
             
         </form>
         <div id="validatedNumber"></div>
     </body>
-    <script>
-        $(document).ready(function() {
-
-            $('#generate').on('submit', function(event) {
-
-                $.ajax({
-                    data : {
-                        brand : $('#brand').val()
-                    },
-                    type : 'POST',
-                    url : '/generate'
-                })
-                .done(function(data) {
-                    $('#generatedNumber').text(data.number);
-                });
-                event.preventDefault();
-
-            });
-
-        });
-    </script>
 </html>
