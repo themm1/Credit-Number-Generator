@@ -11,13 +11,17 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#generate_div, #validate_div {
+.box {
     width: 400px;
-    margin: 15%;
+    margin-bottom: 20%;
+}
+
+.box > * {
+    text-align: center;
 }
 
 h1 {
-    font-size: 35px;
+    font-size: 30px;
     margin-bottom: 20px;
 }
 
@@ -29,5 +33,10 @@ h1 {
 }
 
 .output {
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+#gen_button, #val_button {
+    position: relative;
+    left: 15px;
 }

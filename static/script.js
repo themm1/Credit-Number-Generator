@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	$(".output").css('visibility', 'hidden');
 	$('select').selectpicker();
 
 	$('#generate').on('submit', function(event) {
@@ -12,7 +13,7 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			$('#generatedNumber').text(data.number);
+			$('#generatedNumber').text(data.number).css('visibility', 'visible');
 		});
 		event.preventDefault();
 	});
@@ -28,7 +29,7 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			$('#validatedNumber').text(data.message);
+			$('#validatedNumber').text(data.message).css('visibility', 'visible');;
 		});
 		event.preventDefault();
 	});

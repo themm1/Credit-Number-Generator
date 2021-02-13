@@ -11,7 +11,7 @@
 
     <body>
         <div id="main">
-            <div id="generate_div">
+            <div class="box">
 
                 <form id="generate" action="/generate" method="POST">
                     <h1 class="title">Credit card generator</h1>
@@ -22,23 +22,23 @@
                             <option value="{{ brand.name }}">{{ brand.name }}</option>
                         {% endfor %}
                     </select>
-                    <input type="submit" value="Generate" class="btn btn-success" class="button">
+                    <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
                 
                 </form>
-                <div id="generatedNumber" class="output"></div>
+                <div id="generatedNumber" class="output">number</div>
 
             </div>
     
-            <div id="validate_div">
+            <div class="box">
                 
                 <form id="validate" action="/validate" method="POST">
                     <h1 class="title">Credit card validator</h1>
     
                     <input name="number" id="number" type="text" placeholder="Card Number" autofocus>
-                    <input type="submit" value=" Validate " class="btn btn-success" class="button">
+                    <input type="submit" value=" Validate " class="btn btn-success" id="val_button">
                         
                 </form>
-                <div id="validatedNumber" class="output"></div>
+                <div id="validatedNumber" class="output">validity</div>
                 
             </div>
         </div>
