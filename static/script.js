@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$('select').selectpicker();
+
 	$('#generate').on('submit', function(event) {
 		$.ajax({
 			data : {

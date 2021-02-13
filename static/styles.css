@@ -4,18 +4,30 @@ body {
     color: white;
 }
 
-#generate_div > * {
+#main {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
-    margin-right: -50%;
     transform: translate(-50%, -50%);
 }
 
-#validate_div > * {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+#generate_div, #validate_div {
+    width: 400px;
+    margin: 15%;
+}
+
+h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+#number {
+    width: 220px;
+    height: 40px;
+    border-radius: 6px;
+    padding-left: 10px;
+}
+
+.output {
+    margin-top: 10px;
 }
