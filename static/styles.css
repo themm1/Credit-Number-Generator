@@ -40,3 +40,15 @@ h1 {
     position: relative;
     left: 15px;
 }
+
+#numbers {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
+#brand_title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}

@@ -10,6 +10,14 @@
     </head>
 
     <body>
+        <div id="numbers">
+            {% for brand in brands_dict %}
+                <div id="brand_title">{{ brand }}</div>
+                {% for number in brands_dict[brand] %}
+                    <div>{{ number }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
         <div id="main">
             <div class="box">
 

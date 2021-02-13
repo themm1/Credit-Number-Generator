@@ -13,7 +13,14 @@ BRANDS = [amex, masterc, visa]
 
 @app.route("/")
 def index():
-    return render_template("index.html", brands=BRANDS)
+    brands_dict = {}
+    for brand in BRANDS:
+        numbers = []
+        for i in range(3):
+            numbers.append(generate(brand))
+        brands_dict[brand.name] = numbers
+            
+    return render_template("index.html", brands=BRANDS, brands_dict=brands_dict)
 
 @app.route("/generate", methods=["POST"])
 def generator():
