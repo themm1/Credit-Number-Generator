@@ -12,10 +12,12 @@
     <body>
         <div id="numbers">
             {% for brand in brands_dict %}
-                <div id="brand_title">{{ brand }}</div>
-                {% for number in brands_dict[brand] %}
-                    <div>{{ number }}</div>
-                {% endfor %}
+                <div id="brand_box">
+                    <div id="brand_title">{{ brand }}</div>
+                    {% for number in brands_dict[brand] %}
+                        <div>{{ number }}</div>
+                    {% endfor %}
+                </div>
             {% endfor %}
         </div>
         <div id="main">
@@ -33,7 +35,7 @@
                     <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
                 
                 </form>
-                <div id="generatedNumber" class="output">number</div>
+                <div id="generatedNumber" class="output">f</div>
 
             </div>
     
@@ -46,7 +48,7 @@
                     <input type="submit" value=" Validate " class="btn btn-success" id="val_button">
                         
                 </form>
-                <div id="validatedNumber" class="output">validity</div>
+                <div id="validatedNumber" class="output">e</div>
                 
             </div>
         </div>
