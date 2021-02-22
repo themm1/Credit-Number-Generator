@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$(".output").css('visibility', 'hidden');
+	$(".message").css('visibility', 'hidden');
 	$('select').selectpicker();
 
 	$('#generate').on('submit', function(event) {

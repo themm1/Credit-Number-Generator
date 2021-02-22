@@ -3,10 +3,10 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-        <link rel="stylesheet" type="text/css" href="../static/styles.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <title>Credit</title>
-        <script src="../static/script.js"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </head>
 
     <body>
@@ -35,7 +35,7 @@
                     <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
                 
                 </form>
-                <div id="generatedNumber" class="output">f</div>
+                <div id="generatedNumber" class="message">f</div>
 
             </div>
     
@@ -48,7 +48,7 @@
                     <input type="submit" value=" Validate " class="btn btn-success" id="val_button">
                         
                 </form>
-                <div id="validatedNumber" class="output">e</div>
+                <div id="validatedNumber" class="message">e</div>
                 
             </div>
         </div>
