@@ -4,11 +4,6 @@ $(document).ready(function() {
 	$('select').selectpicker();
 
 
-	$(document).on('click', '.nav-item a', function () {
-        $(this).parent().addClass('active').siblings().removeClass('active');
-    });
-
-
 	$('#generate').on('submit', function(event) {
 		$.ajax({
 			data : {

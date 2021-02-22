@@ -12,7 +12,7 @@ BRANDS = [amex, masterc, visa]
 
 
 @app.route("/")
-def index():
+def home():
     brands_dict = {}
     for brand in BRANDS:
         numbers = []
@@ -20,7 +20,7 @@ def index():
             numbers.append(generate(brand))
         brands_dict[brand.name] = numbers
             
-    return render_template("index.html", brands=BRANDS, brands_dict=brands_dict)
+    return render_template("home.html", brands=BRANDS, brands_dict=brands_dict)
 
 @app.route("/generate", methods=["POST"])
 def generator():
@@ -38,6 +38,13 @@ def validator():
     message = validate(request.form.get("number"), BRANDS)
     return jsonify({"message": message})
 
+@app.route("/advanced/")
+def adv_generator():
+    return render_template("adv_generator.html")
+
+@app.route("/about/")
+def about():
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -21,7 +21,7 @@ body {
     color: rgb(69,162,158) !important;
 }
 
-.navbar-nav > .active > .nav-link{
+#active > .nav-link {
     color: rgb(102,252,241) !important;
 }
 

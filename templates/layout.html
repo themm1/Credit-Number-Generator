@@ -11,22 +11,28 @@
 
     <body>
 
+        {% set navigation_bar = [
+            ("/", "home", "Home"),
+            ("/advanced", "adv_generator", "Advanced Generator"),
+            ("/about", "about", "About")
+        ] -%}
+
+        {% set active_page = active_page|default("home") -%}
+
         <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">CCGV</a>
+            <a class="navbar-brand" href="/">CCGV</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Advanced generator</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
+                  
+                {% for href, id, text in navigation_bar %}
+                    <li class="nav-item" {% if id == active_page %} id="active" {% endif %}>
+                        <a class="nav-link" href={{ href|e }}>{{ text|e }}</a>
+                    </li>
+                {% endfor %}
+                
               </div>
             </div>
         </nav>
