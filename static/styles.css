@@ -4,6 +4,10 @@ body {
     color: rgb(197,198,199)
 }
 
+html {
+  overflow: hidden;
+}
+
 
 /* Navbar items */
 #menu {
@@ -104,4 +108,37 @@ h1 {
     background-color: rgb(69,162,158) !important;
     position: relative;
     left: 15px;
+}
+
+
+/* About */
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(102,252,241);
+    padding-top: 20px;
+}
+
+.example {
+    color: rgb(102,252,241);
+}
+
+table, th, td {
+    border: 2px solid rgb(69,162,158);
+    border-collapse: collapse;
+    padding: 7px;
+}
+
+th {
+    color: rgb(102,252,241);
+}
+
+.row {
+    display: flex;
+    overflow: hidden;
+}
+  
+.column {
+    padding-left: 40px;
+    flex: 50%;
 }

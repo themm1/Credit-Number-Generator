@@ -3,4 +3,92 @@
 
 {% block body %}
 
+    <div class="row">
+        <div class="column">
+            <h4 class="title">What is CCGV</h4>
+            <p>
+                CCGV (Credit Card number Generator and Validator) is a basic web app built with Flask for
+                generating and validating credit card numbers.
+            </p>
+
+            <h4 class="title">Why is this usefull</h4>
+            <p>
+                There are two main reasons for using such an app.
+                <ul>
+                    <li>
+                        Some websites want your credit card number even if you aren't paying.
+                        We believe there's no need to share such information and this is the way
+                        to protect yourelf in such a situations.
+                    </li>
+                    <li>
+                        The other reason we made this are programmers testing ecommerce websites,
+                        applications or other software. For this kind of use we are making also
+                        advanced generator, which is currently unavailable.
+                    </li>
+                </ul>
+            </p>
+
+            <h4 class="title">How do we generate valid credit card nubmer</h4>
+            <p>
+                For generating valid credit card number we need to check for some requirements
+                <ul>
+                    <li>first digits of the number</li>
+                    <li>length of the number</li>
+                    <li>valid Luhn algorithm</li>
+                </ul>
+            </p>
+        </div>
+
+
+        <div class="column">
+            <h4 class="title">Luhn algorithm (MOD 10 alogrithm)</h4>
+            <p>
+                The Luhn algorithm is a checksum formula which is used for validating credit card numbers.
+                <p>Say we have number 38520000023237</p>
+                <ul>
+                    <li>double every other digit starting from the right</li>
+                    <li class="example">6, 6, 0, 0, 0, 10, 6</li>
+
+                    <li>
+                        take the sum of the numbers, if numbers contains two digits, sum the digit products
+                    </li>
+                    <li class="example">6 + 6 + 0 + 0 + 0 + 1 + 0 + 6 = 19</li>
+
+                    <li>now sum the rest of the digits</li>
+                    <li class="example">7 + 2 + 2 + 0 + 0 + 2 + 8 = 21</li>
+
+                    <li>add our two sums</li>
+                    <li class="example">19 + 21 = 40</li>
+
+                    <li>if the final sum is devisible by 10, Luhn algorithm is valid</li>
+                    <li class="example">40 / 10 = 4, valid</li>
+                </ul>
+            </p>
+
+            <h4 class="title">Brands specifications</h4>
+            <table class="center">
+                <tr>
+                    <th>Brand</th>
+                    <th>First digits</th>
+                    <th>Length</th>
+                </tr>
+                <tr>
+                    <td>American Express</td>
+                    <td>34 or 37</td>
+                    <td>15 digits</td>
+                </tr>
+                <tr>
+                    <td>Master Card</td>
+                    <td>51 - 55</td>
+                    <td>16 digits</td>
+                </tr>
+                <tr>
+                    <td>Visa</td>
+                    <td>40 - 49</td>
+                    <td>13, 16 or 19 digits</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 {% endblock %}

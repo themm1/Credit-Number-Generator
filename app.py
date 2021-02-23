@@ -5,7 +5,7 @@ from credit import Brand, CreditNumber, generate, validate
 app = Flask(__name__)
 
 amex = Brand("American Express", [15], ["34", "37"])
-masterc = Brand("Master Card", [16], [str(number) for number in range(50, 56)])
+masterc = Brand("Master Card", [16], [str(number) for number in range(51, 56)])
 visa = Brand("VISA", [13, 16, 19], [str(number) for number in range(40, 50)])
 
 BRANDS = [amex, masterc, visa]
