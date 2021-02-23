@@ -4,12 +4,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <script src="https://kit.fontawesome.com/b502b5efb6.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <title>Credit</title>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </head>
 
     <body>
+
 
         {% set navigation_bar = [
             ("/", "home", "Home"),
@@ -19,22 +21,32 @@
 
         {% set active_page = active_page|default("home") -%}
 
+
         <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+
             <a class="navbar-brand" href="/">CCGV</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                  
-                {% for href, id, text in navigation_bar %}
-                    <li class="nav-item" {% if id == active_page %} id="active" {% endif %}>
-                        <a class="nav-link" href={{ href|e }}>{{ text|e }}</a>
-                    </li>
-                {% endfor %}
-                
-              </div>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% for href, id, text in navigation_bar %}
+                        <li class="nav-item" {% if id == active_page %} id="active" {% endif %}>
+                            <a class="nav-link" href={{ href|e }}>{{ text|e }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link fab fa-github" id="github_logo" href="https://github.com/themm1/Credit-number-generator" target="_blank"></a>
+                    </li>
+                </ul>
+            </div>
+
         </nav>
 
         {% block body %}{% endblock %}
