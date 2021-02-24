@@ -3,12 +3,11 @@
 
 {% block body %}
 
-    <form id="advanced" action="/generate" method="POST">
+    <form id="advanced" action="/adv_generator" method="POST">
         
         <h1 class="title">Advanced Credit Card Generator</h1>
 
         <select name="brand" id="brand" title="Select Brand">
-            <option data-subtext="random pick">Random</option>
             {% for brand in brands %}
                 <option value="{{ brand.name }}">{{ brand.name }}</option>
             {% endfor %}
@@ -16,7 +15,7 @@
 
         <input name="count" id="count" type="number" placeholder="Number of entries" autocomplete="off">
 
-        <select name="format" id="data_format" title="Data Format">
+        <select name="data_format" id="data_format" title="Data Format">
             <option value="JSON">JSON</option>
             <option value="XML">XML</option>
             <option value="CSV">CSV</option>

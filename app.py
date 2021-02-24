@@ -39,8 +39,31 @@ def validator():
     return jsonify({"message": message})
 
 @app.route("/advanced/")
-def adv_generator():
+def advanced():
     return render_template("adv_generator.html", brands=BRANDS)
+
+@app.route("/adv_generator", methods=["POST"])
+def advanced_generator():
+    picked_brand = request.form["brand"]
+    data_format = request.form["data_format"]
+    count = request.form["count"]
+
+    for brands in BRANDS:
+        if brands.name == picked_brand:
+            brand = brands
+            break
+
+    json = []
+    for _ in range(int(count)):
+        creditcard = {
+            "CreditCard": {
+                "Brand": brand.name,
+                "Number": generate(brand)
+            }
+        }
+        json.append(creditcard)
+
+    return jsonify(json)
 
 @app.route("/about/")
 def about():
