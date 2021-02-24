@@ -40,7 +40,7 @@ def validator():
 
 @app.route("/advanced/")
 def adv_generator():
-    return render_template("adv_generator.html")
+    return render_template("adv_generator.html", brands=BRANDS)
 
 @app.route("/about/")
 def about():

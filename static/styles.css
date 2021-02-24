@@ -89,11 +89,12 @@ h1 {
     font-size: 30px;
     color: rgb(102,252,241);
     margin-bottom: 20px;
+    text-align: center;
 }
 
-#number {
+#number, #count {
     width: 220px;
-    height: 40px;
+    height: 41px;
     border-radius: 6px;
     padding-left: 10px;
 }
@@ -141,4 +142,23 @@ th {
 .column {
     padding-left: 40px;
     flex: 50%;
+}
+
+
+/* Advanced Generator */
+#advanced {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+ 
+textarea {
+    min-height: 500px;
+    width: 500px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
