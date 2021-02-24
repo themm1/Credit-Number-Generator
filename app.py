@@ -63,7 +63,7 @@ def advanced_generator():
         }
         json.append(creditcard)
 
-    return jsonify(json)
+    return jsonify({"json": json})
 
 @app.route("/about/")
 def about():

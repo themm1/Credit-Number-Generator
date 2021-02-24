@@ -33,4 +33,21 @@ $(document).ready(function() {
 		});
 		event.preventDefault();
 	});
+
+	$('#advanced').on('submit', function(event) {
+		$.ajax({
+			data : {
+				brand : $('#brand').val(),
+				count : $('#count').val(),
+				data_format : $('#data_format').val()
+			},
+			type : 'POST',
+			url : '/adv_generator'
+		})
+
+		.done(function(data) {
+			$('textarea').text(JSON.stringify(data.json, null, 2));
+		});
+		event.preventDefault();
+	});
 });
