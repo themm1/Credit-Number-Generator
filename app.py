@@ -48,13 +48,12 @@ def advanced_generator():
     data_format = request.form["data_format"]
     count = request.form["count"]
 
-    for brands in BRANDS:
-        if brands.name == picked_brand:
-            brand = brands
+    for brand in BRANDS:
+        if brand.name == picked_brand:
+            picked_brand = brand
             break
 
-    makefile = makeFile(brand, int(count))
-
+    makefile = makeFile(picked_brand, int(count))
     if data_format == "CSV":
         file = makefile.CSV()
     elif data_format == "XML":
@@ -104,7 +103,7 @@ class makeFile:
         
         for _ in range(self.count):
             line = f"  <CreditCard>\n    <Brand>{self.brand.name}</Brand>\n\
-        <Number>{generate(self.brand)}</Number>\n  </CreditCard>\n"
+    <Number>{generate(self.brand)}</Number>\n  </CreditCard>\n"
             xml.append(line)
         xml.append("</root>")
         return "".join(xml)

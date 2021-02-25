@@ -48,11 +48,11 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			if (data.data_format == 'CSV' || data.data_format == "XML") {
-				$('textarea').text(data.file);
+			if (data.data_format == 'JSON') {
+				$('textarea').text(JSON.stringify(data.file, null, 2));
 			}
 			else {
-				$('textarea').text(JSON.stringify(data.file, null, 2));
+				$('textarea').text(data.file);
 			}
 		});
 		event.preventDefault();
