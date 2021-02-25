@@ -3,30 +3,37 @@
 
 {% block body %}
 
-    <form id="file_generator" action="/file_generator" method="POST">
+    <div id="adv_generator">
+
+        <h1>Advanced Credit Card Generator</h1>
+
+        <form id="file_generator" action="/file_generator" method="POST">
+    
+            <select name="brand" id="brand" title="Select Brand">
+                <option value="Random">Random</option>
+                {% for brand in brands %}
+                    <option value="{{ brand.name }}">{{ brand.name }}</option>
+                {% endfor %}
+            </select>
         
-        <h1 class="title">Advanced Credit Card Generator</h1>
-
-        <select name="brand" id="brand" title="Select Brand">
-            <option value="Random">Random</option>
-            {% for brand in brands %}
-                <option value="{{ brand.name }}">{{ brand.name }}</option>
-            {% endfor %}
-        </select>
-
-        <input name="count" id="count" type="number" placeholder="Number of entries" autocomplete="off">
-
-        <select name="data_format" id="data_format" title="Data Format">
-            <option value="json">JSON</option>
-            <option value="xml">XML</option>
-            <option value="csv">CSV</option>
-        </select>
-
-        <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
+            <input name="count" id="count" type="number" placeholder="Number of entries" autocomplete="off">
         
-    </form>
+            <select name="data_format" id="data_format" title="Data Format">
+                <option value="json">JSON</option>
+                <option value="xml">XML</option>
+                <option value="csv">CSV</option>
+            </select>
+        
+            <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
+                
+        </form>
+        
+        <textarea id="textarea"></textarea>
+        
+        <button type="button" class="btn btn-success" id="download">Download</button>
+        
 
-    <textarea id="textarea"></textarea>
-    <button type="button" class="btn btn-success" id="download">Download</button>
+    </div>
+    
 
 {% endblock %}

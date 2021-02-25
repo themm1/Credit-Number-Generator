@@ -3,47 +3,48 @@
 
 {% block body %}
 
-    <div id="numbers">
-        {% for brand in brands_dict %}
-            <div id="brand_box">
-                <div id="brand_title">{{ brand }}</div>
-                {% for number in brands_dict[brand] %}
-                    <div>{{ number }}</div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
     <div id="main">
+        <div id="numbers">
+            {% for brand in brands_dict %}
+                <div id="brand_box">
+                    <h2 id="brand_title">{{ brand }}</h2>
+                    {% for number in brands_dict[brand] %}
+                        <div>{{ number }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    
         <div class="box">
-
+    
             <form id="generate" action="/generate" method="POST">
-                <h1 class="title">Credit card generator</h1>
-
+                <h2>Credit card generator</h2>
+    
                 <select name="brand" id="brand" title="Select Brand">
-                    <option data-subtext="random pick">Random</option>
+                    <option>Random</option>
                     {% for brand in brands %}
                         <option value="{{ brand.name }}">{{ brand.name }}</option>
                     {% endfor %}
                 </select>
                 <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
-                
+                    
             </form>
             <div id="generatedNumber" class="message">_</div>
-
+    
         </div>
-    
+        
         <div class="box">
-                
+                    
             <form id="validate" action="/validate" method="POST">
-                <h1 class="title">Credit card validator</h1>
-    
+                <h2>Credit card validator</h2>
+        
                 <input name="number" id="number" type="text" placeholder="Card Number" autocomplete="off">
                 <input type="submit" value=" Validate " class="btn btn-success" id="val_button">
-                        
+                            
             </form>
             <div id="validatedNumber" class="message">_</div>
-                
+                    
         </div>
     </div>
-
+    
 {% endblock %}
