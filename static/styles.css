@@ -108,7 +108,6 @@ h1 {
 .btn-success {
     background-color: rgb(69,162,158) !important;
     position: relative;
-    left: 15px;
 }
 
 
@@ -146,7 +145,7 @@ th {
 
 
 /* Advanced Generator */
-#advanced {
+#file_generator {
     position: absolute;
     top: 15%;
     left: 50%;
@@ -155,7 +154,7 @@ th {
  
 textarea {
     height: 500px;
-    width: 700px;
+    width: 768px;
     resize: none;
     position: absolute;
     top: 60%;

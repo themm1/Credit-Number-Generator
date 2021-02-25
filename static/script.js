@@ -36,7 +36,7 @@ $(document).ready(function() {
 	});
 
 
-	$('#advanced').on('submit', function(event) {
+	$('#file_generator').on('submit', function(event) {
 		$.ajax({
 			data: {
 				brand: $('#brand').val(),
