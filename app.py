@@ -38,6 +38,7 @@ def validator():
     message = validate(request.form.get("number"), BRANDS)
     return jsonify({"message": message})
 
+
 @app.route("/advanced/")
 def advanced():
     return render_template("adv_generator.html", brands=BRANDS)
@@ -74,37 +75,32 @@ class makeFile:
         self.brand = brand
         self.count = count
 
+    def make(self, file, lambda_func):
+        if self.brand in BRANDS:
+            for _ in range(self.count):
+                file.append(lambda_func(self.brand))
+        else:
+            for _ in range(self.count):
+                file.append(lambda_func(random.choice(BRANDS)))
+        return file
+
     def JSON(self):
-        json = []
-        for _ in range(self.count):
-            creditcard = {
+        json = self.make([], lambda brand: {
                 "CreditCard": {
-                    "Brand": self.brand.name,
-                    "Number": generate(self.brand)
+                    "Brand": brand.name,
+                    "Number": generate(brand)
                 }
-            }
-            json.append(creditcard)
+            })
         return json
-
+        
     def CSV(self):
-        data = []
-        line = ",".join(["Brand", "Number"])
-        data.append(line)
-
-        for _ in range(self.count):
-            line = ",".join([self.brand.name, generate(self.brand)])
-            data.append(line)
-        return "\n".join(data)
+        header = ",".join(["Brand", "Number"])
+        csv = self.make([header], lambda brand: ",".join([brand.name, generate(brand)]))
+        return "\n".join(csv)
 
     def XML(self):
-        xml = []
-        line = "<root>\n"
-        xml.append(line)
-        
-        for _ in range(self.count):
-            line = f"  <CreditCard>\n    <Brand>{self.brand.name}</Brand>\n\
-    <Number>{generate(self.brand)}</Number>\n  </CreditCard>\n"
-            xml.append(line)
+        xml = self.make(["<root>\n"], lambda brand: f"  <CreditCard>\n    <Brand>{brand.name}</Brand>\n\
+    <Number>{generate(brand)}</Number>\n  </CreditCard>\n")
         xml.append("</root>")
         return "".join(xml)
         
