@@ -48,13 +48,33 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			if (data.data_format == 'JSON') {
-				$('textarea').text(JSON.stringify(data.file, null, 2));
+			if (data.data_format == 'csv' || data.data_format == 'xml') {
+				$('textarea').text(data.file);
 			}
 			else {
-				$('textarea').text(data.file);
+				$('textarea').text(JSON.stringify(data.file, null, 2));
 			}
 		});
 		event.preventDefault();
 	});
+
+
+	$('#download').on('click', function() {
+		download(`creditnumbers.${$('#data_format').val()}`)
+	});
 });
+
+
+function download(name){
+    var text = document.getElementById("textarea").value;
+    text = text.replace(/\n/g, "\r\n");
+    var blob = new Blob([text], { type: "text/plain"});
+    var anchor = document.createElement("a");
+    anchor.download = name;
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target ="_blank";
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+ }

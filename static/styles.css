@@ -157,8 +157,15 @@ textarea {
     width: 768px;
     resize: none;
     position: absolute;
-    top: 60%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+}
+
+#download {
+    position: absolute;
+    top: 93.5%;
+    left: 71.8%;
+    transform: translate(-50%, -50%);
 }

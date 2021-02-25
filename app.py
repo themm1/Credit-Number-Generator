@@ -55,9 +55,9 @@ def advanced_generator():
             break
 
     makefile = makeFile(picked_brand, int(count))
-    if data_format == "CSV":
+    if data_format == "csv":
         file = makefile.CSV()
-    elif data_format == "XML":
+    elif data_format == "xml":
         file = makefile.XML()
     else:
         file = makefile.JSON()
