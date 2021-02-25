@@ -44,7 +44,7 @@ $(document).ready(function() {
 				data_format: $('#data_format').val()
 			},
 			type : 'POST',
-			url : '/adv_generator'
+			url : '/file_generator'
 		})
 
 		.done(function(data) {

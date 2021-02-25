@@ -43,7 +43,7 @@ def validator():
 def advanced():
     return render_template("adv_generator.html", brands=BRANDS)
 
-@app.route("/adv_generator", methods=["POST"])
+@app.route("/file_generator", methods=["POST"])
 def advanced_generator():
     picked_brand = request.form["brand"]
     data_format = request.form["data_format"]
