@@ -32,9 +32,20 @@ def makeCSV(brand, count):
     for _ in range(count):
         line = ",".join([brand.name, generate(brand)])
         data.append(line)
-    data = "\n".join(data)
 
-    return data
+    return "\n".join(data)
+
+def makeXML(brand, count):
+    xml = []
+    line = "<root>\n"
+    xml.append(line)
+    
+    for _ in range(count):
+        line = f"  <CreditCard>\n    <IssuingNetwork>{brand.name}</IssuingNetwork>\n    <CardNumber>{generate(brand)}</CardNumber>\n  </CreditCard>\n"
+        xml.append(line)
+    xml.append("</root>")
+
+    return "".join(xml)
 
 
 @app.route("/")
@@ -81,6 +92,8 @@ def advanced_generator():
 
     if data_format == "CSV":
         file = makeCSV(brand, int(count))
+    elif data_format == "XML":
+        file = makeXML(brand, int(count))
     else:
         file = makeJSON(brand, int(count))
         

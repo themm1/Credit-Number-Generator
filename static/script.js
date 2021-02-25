@@ -19,6 +19,7 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
+	
 	$('#validate').on('submit', function(event) {
 		$.ajax({
 			data : {
@@ -34,6 +35,7 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 
+
 	$('#advanced').on('submit', function(event) {
 		$.ajax({
 			data: {
@@ -46,7 +48,7 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			if (data.data_format == "CSV") {
+			if (data.data_format == 'CSV' || data.data_format == "XML") {
 				$('textarea').text(data.file);
 			}
 			else {
