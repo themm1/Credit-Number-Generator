@@ -154,8 +154,9 @@ th {
 }
  
 textarea {
-    min-height: 500px;
-    width: 500px;
+    height: 500px;
+    width: 700px;
+    resize: none;
     position: absolute;
     top: 60%;
     left: 50%;

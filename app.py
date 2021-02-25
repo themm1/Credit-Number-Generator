@@ -11,6 +11,32 @@ visa = Brand("VISA", [13, 16, 19], [str(number) for number in range(40, 50)])
 BRANDS = [amex, masterc, visa]
 
 
+def makeJSON(brand, count):
+    json = []
+    for _ in range(int(count)):
+        creditcard = {
+            "CreditCard": {
+                "Brand": brand.name,
+                "Number": generate(brand)
+            }
+        }
+        json.append(creditcard)
+
+    return json
+
+def makeCSV(brand, count):
+    data = []
+    line = ",".join(["Brand", "Number"])
+    data.append(line)
+
+    for _ in range(count):
+        line = ",".join([brand.name, generate(brand)])
+        data.append(line)
+    data = "\n".join(data)
+
+    return data
+
+
 @app.route("/")
 def home():
     brands_dict = {}
@@ -53,17 +79,13 @@ def advanced_generator():
             brand = brands
             break
 
-    json = []
-    for _ in range(int(count)):
-        creditcard = {
-            "CreditCard": {
-                "Brand": brand.name,
-                "Number": generate(brand)
-            }
-        }
-        json.append(creditcard)
+    if data_format == "CSV":
+        file = makeCSV(brand, int(count))
+    else:
+        file = makeJSON(brand, int(count))
+        
+    return jsonify({"file": file, "data_format": data_format})
 
-    return jsonify({"json": json})
 
 @app.route("/about/")
 def about():

@@ -36,17 +36,22 @@ $(document).ready(function() {
 
 	$('#advanced').on('submit', function(event) {
 		$.ajax({
-			data : {
-				brand : $('#brand').val(),
-				count : $('#count').val(),
-				data_format : $('#data_format').val()
+			data: {
+				brand: $('#brand').val(),
+				count: $('#count').val(),
+				data_format: $('#data_format').val()
 			},
 			type : 'POST',
 			url : '/adv_generator'
 		})
 
 		.done(function(data) {
-			$('textarea').text(JSON.stringify(data.json, null, 2));
+			if (data.data_format == "CSV") {
+				$('textarea').text(data.file);
+			}
+			else {
+				$('textarea').text(JSON.stringify(data.file, null, 2));
+			}
 		});
 		event.preventDefault();
 	});
