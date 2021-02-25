@@ -11,43 +11,6 @@ visa = Brand("VISA", [13, 16, 19], [str(number) for number in range(40, 50)])
 BRANDS = [amex, masterc, visa]
 
 
-def makeJSON(brand, count):
-    json = []
-    for _ in range(int(count)):
-        creditcard = {
-            "CreditCard": {
-                "Brand": brand.name,
-                "Number": generate(brand)
-            }
-        }
-        json.append(creditcard)
-
-    return json
-
-def makeCSV(brand, count):
-    data = []
-    line = ",".join(["Brand", "Number"])
-    data.append(line)
-
-    for _ in range(count):
-        line = ",".join([brand.name, generate(brand)])
-        data.append(line)
-
-    return "\n".join(data)
-
-def makeXML(brand, count):
-    xml = []
-    line = "<root>\n"
-    xml.append(line)
-    
-    for _ in range(count):
-        line = f"  <CreditCard>\n    <IssuingNetwork>{brand.name}</IssuingNetwork>\n    <CardNumber>{generate(brand)}</CardNumber>\n  </CreditCard>\n"
-        xml.append(line)
-    xml.append("</root>")
-
-    return "".join(xml)
-
-
 @app.route("/")
 def home():
     brands_dict = {}
@@ -90,12 +53,14 @@ def advanced_generator():
             brand = brands
             break
 
+    makefile = makeFile(brand, int(count))
+
     if data_format == "CSV":
-        file = makeCSV(brand, int(count))
+        file = makefile.CSV()
     elif data_format == "XML":
-        file = makeXML(brand, int(count))
+        file = makefile.XML()
     else:
-        file = makeJSON(brand, int(count))
+        file = makefile.JSON()
         
     return jsonify({"file": file, "data_format": data_format})
 
@@ -104,6 +69,46 @@ def advanced_generator():
 def about():
     return render_template("about.html")
 
+
+class makeFile:
+    def __init__(self, brand, count):
+        self.brand = brand
+        self.count = count
+
+    def JSON(self):
+        json = []
+        for _ in range(self.count):
+            creditcard = {
+                "CreditCard": {
+                    "Brand": self.brand.name,
+                    "Number": generate(self.brand)
+                }
+            }
+            json.append(creditcard)
+        return json
+
+    def CSV(self):
+        data = []
+        line = ",".join(["Brand", "Number"])
+        data.append(line)
+
+        for _ in range(self.count):
+            line = ",".join([self.brand.name, generate(self.brand)])
+            data.append(line)
+        return "\n".join(data)
+
+    def XML(self):
+        xml = []
+        line = "<root>\n"
+        xml.append(line)
+        
+        for _ in range(self.count):
+            line = f"  <CreditCard>\n    <Brand>{self.brand.name}</Brand>\n\
+        <Number>{generate(self.brand)}</Number>\n  </CreditCard>\n"
+            xml.append(line)
+        xml.append("</root>")
+        return "".join(xml)
+        
 
 if __name__ == "__main__":
     app.run(debug=True)
