@@ -37,39 +37,35 @@ $(document).ready(function() {
 
 
 	$('#file_generator').on('submit', function(event) {
+		event.preventDefault();
+	  
 		$.ajax({
-			data: {
+		  	data: {
 				brand: $('#brand').val(),
 				count: $('#count').val(),
 				data_format: $('#data_format').val()
-			},
-			type : 'POST',
-			url : '/file_generator'
+		  	},
+		  	type: 'POST',
+		  	url: '/file_generator'
 		})
-
+		
 		.done(function(data) {
-			textarea = document.getElementById('textarea')
-			if (data.file_format == 'csv' || data.file_format == 'xml') {
+		  	textarea = document.getElementById('textarea')
+			file_format = data.file_format
+		  	if (file_format == 'csv' || file_format == 'xml') {
 				textarea.value = data.file;
-			}
-			else {
+		  	} 
+		  	else {
 				textarea.value = JSON.stringify(data.file, null, 2);
-			}
-
-			$('#download').on('click', function() {
-				var text = document.getElementById('textarea').value;
-				text = text.replace(/\n/g, '\r\n');
-				var blob = new Blob([text], { type: 'text/plain'});
-				var anchor = document.createElement('a');
-				anchor.download = `creditnumbers.${data.file_format}`;
-				anchor.href = window.URL.createObjectURL(blob);
-				anchor.target ='_blank';
-				anchor.style.display = 'none';
-				document.body.appendChild(anchor);
-				anchor.click();
-				document.body.removeChild(anchor);
-			});
+		  	}
 		});
-		event.preventDefault();
+	});
+	  
+	
+	$('#download').on('click', function() {
+		var text = $('#textarea').val().replace(/\n/g, '\r\n');
+		var blob = new Blob([text], { type: 'text/plain' });
+		$(`<a download="creditnumbers.${file_format}" href="${window.URL.createObjectURL(blob)}
+		"target="_blank" style="display: none;">`).appendTo(document.body)[0].click().remove();
 	});
 });
