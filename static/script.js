@@ -48,35 +48,28 @@ $(document).ready(function() {
 		})
 
 		.done(function(data) {
-			if (data.data_format == 'csv' || data.data_format == 'xml') {
-				$('textarea').text(data.file);
+			textarea = document.getElementById('textarea')
+			if (data.file_format == 'csv' || data.file_format == 'xml') {
+				textarea.value = data.file;
 			}
 			else {
-				$('textarea').text(JSON.stringify(data.file, null, 2));
+				textarea.value = JSON.stringify(data.file, null, 2);
 			}
 
 			$('#download').on('click', function() {
-				download(`creditnumbers.${data.data_format}`)
+				var text = document.getElementById('textarea').value;
+				text = text.replace(/\n/g, '\r\n');
+				var blob = new Blob([text], { type: 'text/plain'});
+				var anchor = document.createElement('a');
+				anchor.download = `creditnumbers.${data.file_format}`;
+				anchor.href = window.URL.createObjectURL(blob);
+				anchor.target ='_blank';
+				anchor.style.display = 'none';
+				document.body.appendChild(anchor);
+				anchor.click();
+				document.body.removeChild(anchor);
 			});
 		});
 		event.preventDefault();
-
 	});
-
-	
 });
-
-
-function download(name){
-    var text = document.getElementById("textarea").value;
-    text = text.replace(/\n/g, "\r\n");
-    var blob = new Blob([text], { type: "text/plain"});
-    var anchor = document.createElement("a");
-    anchor.download = name;
-    anchor.href = window.URL.createObjectURL(blob);
-    anchor.target ="_blank";
-    anchor.style.display = "none";
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
- }

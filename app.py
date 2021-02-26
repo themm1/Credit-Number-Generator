@@ -9,6 +9,7 @@ masterc = Brand("Master Card", [16], [str(number) for number in range(51, 56)])
 visa = Brand("VISA", [13, 16, 19], [str(number) for number in range(40, 50)])
 
 BRANDS = [amex, masterc, visa]
+FILE_FORMATS = ["json", "xml", "csv"]
 
 
 @app.route("/")
@@ -41,28 +42,31 @@ def validator():
 
 @app.route("/advanced/")
 def advanced():
-    return render_template("adv_generator.html", brands=BRANDS)
+    return render_template("adv_generator.html", brands=BRANDS, file_formats=FILE_FORMATS)
 
 @app.route("/file_generator", methods=["POST"])
 def advanced_generator():
     picked_brand = request.form["brand"]
-    data_format = request.form["data_format"]
+
     count = request.form["count"]
+    count = int(count)
+    if count < 1 or count > 10000:
+        return
+
+    picked_format = request.form["data_format"]
 
     for brand in BRANDS:
         if brand.name == picked_brand:
             picked_brand = brand
             break
 
-    makefile = makeFile(picked_brand, int(count))
-    if data_format == "csv":
-        file = makefile.CSV()
-    elif data_format == "xml":
-        file = makefile.XML()
-    else:
-        file = makefile.JSON()
+    makefile = makeFile(picked_brand, count)
+    for file_format in FILE_FORMATS:
+        if file_format == picked_format:
+            file = makefile.createFile(file_format)
+            break
         
-    return jsonify({"file": file, "data_format": data_format})
+    return jsonify({"file": file, "file_format": picked_format})
 
 
 @app.route("/about/")
@@ -74,6 +78,14 @@ class makeFile:
     def __init__(self, brand, count):
         self.brand = brand
         self.count = count
+
+    def createFile(self, file_format):
+        files_dict = {
+            "json": self.JSON(),
+            "xml": self.XML(),
+            "csv": self.CSV(),
+            }
+        return files_dict[file_format]
 
     def make(self, file, lambda_func):
         if self.brand in BRANDS:

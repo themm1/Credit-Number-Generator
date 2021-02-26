@@ -16,12 +16,12 @@
                 {% endfor %}
             </select>
         
-            <input name="count" id="count" type="number" placeholder="Number of entries" autocomplete="off">
+            <input name="count" id="count" type="number" placeholder="Number of entries" autocomplete="off"  min="1" max="10000">
         
             <select name="data_format" id="data_format" title="Data Format">
-                <option value="json">JSON</option>
-                <option value="xml">XML</option>
-                <option value="csv">CSV</option>
+                {% for file_format in file_formats %}
+                    <option value="{{ file_format }}">{{ file_format }}</option>
+                {% endfor %}
             </select>
         
             <input type="submit" value="Generate" class="btn btn-success" id="gen_button">
