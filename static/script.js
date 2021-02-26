@@ -54,14 +54,16 @@ $(document).ready(function() {
 			else {
 				$('textarea').text(JSON.stringify(data.file, null, 2));
 			}
+
+			$('#download').on('click', function() {
+				download(`creditnumbers.${data.data_format}`)
+			});
 		});
 		event.preventDefault();
+
 	});
 
-
-	$('#download').on('click', function() {
-		download(`creditnumbers.${$('#data_format').val()}`)
-	});
+	
 });
 
 
