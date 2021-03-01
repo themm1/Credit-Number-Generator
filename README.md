@@ -6,15 +6,15 @@
 CCGV is basic Flask web application for generating and validating credit card numbers.
 
 ## How it works?
-To generate or validate credit card number we need to check for some requirements.
+- To generate or validate credit card number we need to check for some requirements.
 
     - first digits (individual for every brand)
     - length of the number (individual for every brand)
     - valid Luhn's algorithm
 
-More about Luhn's algorithm [here](https://www.geeksforgeeks.org/luhn-algorithm/)
+More about Luhn algorithm [here](https://www.geeksforgeeks.org/luhn-algorithm/)
 
-## Requirements for available brands
+## Specifications for available brands
  **Brand**            | **First Digits**     | **Length**               
  -------------------- | -------------------- | ---------------------
  American Express     | 34 or 37             | 15 digits            
