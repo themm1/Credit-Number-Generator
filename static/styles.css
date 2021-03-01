@@ -134,6 +134,11 @@ th {
     color: rgb(102,252,241);
 }
 
+#hyperlink {
+    color: rgb(69,162,158);
+    text-decoration: none
+}
+
 
 
 /* Advanced Generator */
