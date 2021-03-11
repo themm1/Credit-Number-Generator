@@ -1,6 +1,6 @@
 # Credit Card Number Generator and Validator
 
-## Website: [CCGV](https://ccgv.herokuapp.com/)
+## Website: [CCGV](http://ccgv.pythonanywhere.com/)
 
 ## What is it?
 CCGV is basic Flask web application for generating and validating credit card numbers.
