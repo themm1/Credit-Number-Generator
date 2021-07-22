@@ -155,7 +155,8 @@ th {
 }
 
 textarea {
-    height: 500px;
+    flex-basis: 65vh;
+    flex-shrink: 0;
     width: 768px;
     resize: none;
 }
